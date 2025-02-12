@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Mi Sistema</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <!-- Pantalla de carga -->
+    <div id="loading-screen">
+        <div class="loader"></div> <!-- Círculo de carga -->
+		<div class="loading-text">Iniciando sistema...</div> <!-- Mensaje de bienvenida -->
+    </div>
+
+    <!-- Fondo de partículas -->
+    <div id="particles-js"></div>
+<!-- Mensaje central -->
+<div id="welcome-message">
+    <h1>¡Hola! Soy Daniel Ferrer</h1>
+    <h2>Técnico en Programación | Ingeniero en Tecnologías de la Información</h2>
+    <p>Transformando el futuro a través de la tecnología..</p>
+</div>
+    <!-- Interfaz tipo sistema operativo -->
+    <div class="os-interface">
+        <!-- Barra de tareas -->
+        <div class="taskbar">
+           
+            <div class="taskbar-icons">
+                <div class="icon" onclick="openWindow('habilidades')">
+                    <i class="fas fa-code"></i>
+                    <span>Habilidades</span>
+                </div>
+                <div class="icon" onclick="openWindow('experiencia')">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Experiencia</span>
+                </div>
+                <div class="icon" onclick="openWindow('contacto')">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contacto</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú de inicio -->
+        <div id="start-menu-content" class="start-menu-content">
+            <div class="menu-item" onclick="openWindow('habilidades')">
+                <i class="fas fa-code"></i>
+                <span>Habilidades</span>
+            </div>
+            <div class="menu-item" onclick="openWindow('experiencia')">
+                <i class="fas fa-briefcase"></i>
+                <span>Experiencia</span>
+            </div>
+            <div class="menu-item" onclick="openWindow('contacto')">
+                <i class="fas fa-envelope"></i>
+                <span>Contacto</span>
+            </div>
+        </div>
+
+        <!-- Ventanas -->
+        <div id="habilidades" class="window habilidades">
+            <div class="window-header">
+                <span>Habilidades Técnicas</span>
+                <div class="window-controls">
+                    <i class="fas fa-times" onclick="closeWindow('habilidades')"></i>
+                </div>
+            </div>
+          <div class="window-content">
+    <div class="column">
+        <h3>Programación y Desarrollo</h3>
+        <p>Programación en Java (POO), Python, C, C++</p>
+        <p>Desarrollo web con HTML, CSS, JavaScript</p>
+        <p>Bases de datos con SQL y MySQL</p>
+        <p>Creación y gestión de redes neuronales en Python con OpenCV (visión por computadora)</p>
+        <p>Programación de Arduino, Raspberry Pi y ESP32</p>
+        <p>Programación básica de PLC</p>
+    </div>
+    
+    <div class="column">
+        <h3>Infraestructura IT y Redes</h3>
+        <p>Configuración de redes y servidores</p>
+        <p>Configuración de switches Dell y Cisco</p>
+        <p>Uso de Active Directory y DHCP</p>
+        <p>Intercomunicación de redes</p>
+        <p>Configuración de impresoras de etiquetas térmicas</p>
+        <p>Respaldo de información de usuarios</p>
+    </div>
+
+    <div class="column">
+        <h3>Sistemas Operativos y Virtualización</h3>
+        <p>Instalación de Windows, macOS y Linux</p>
+        <p>Creación de máquinas virtuales en Azure y entornos locales</p>
+
+        <h3>Electrónica y Electricidad</h3>
+        <p>Conocimientos en electricidad y electrónica</p>
+        <p>Conexiones electrónicas y eléctricas</p>
+        <p>Arquitectura de computadoras y cambio de componentes electrónicos</p>
+
+        <h3>Ciberseguridad y Soporte Técnico</h3>
+        <p>Conocimientos en ciberseguridad</p>
+        <p>Soporte técnico a usuarios</p>
+    </div>
+</div>
+
+        </div>
+
+        <div id="experiencia" class="window experiencia">
+            <div class="window-header">
+                <span>Experiencia Laboral</span>
+                <div class="window-controls">
+                    <i class="fas fa-times" onclick="closeWindow('experiencia')"></i>
+                </div>
+            </div>
+            <div class="window-content">
+                <h3>Hutchinson Mangueras – Residente de Prácticas en IT</h3>
+                <p>Gestión de Active Directory y configuración de DHCP.</p>
+                <p>Programación y configuración de switches Dell y Cisco.</p>
+            </div>
+        </div>
+
+        <div id="contacto" class="window contacto">
+            <div class="window-header">
+                <span>Contacto</span>
+                <div class="window-controls">
+                    <i class="fas fa-times" onclick="closeWindow('contacto')"></i>
+                </div>
+            </div>
+            <div class="window-content">
+                <p>Email: dangugarfer.09@gmail.com</p>
+                <p>Teléfono: 412-117-8312</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
