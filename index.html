@@ -1,34 +1,61 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio - Mi Sistema</title>
+    <title>Portafolio - Daniel Ferrer</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
-<body>
+<body class="light-mode">
+    <!-- Botón de modo claro/oscuro -->
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
     <!-- Pantalla de carga -->
     <div id="loading-screen">
-        <div class="loader"></div> <!-- Círculo de carga -->
-		<div class="loading-text">Iniciando sistema...</div> <!-- Mensaje de bienvenida -->
+        <div class="loader"></div>
+        <div class="loading-text">Hola Mundo...</div>
     </div>
 
     <!-- Fondo de partículas -->
     <div id="particles-js"></div>
-<!-- Mensaje central -->
-<div id="welcome-message">
-    <h1>¡Hola! Soy Daniel Ferrer</h1>
-    <h2>Técnico en Programación | Ingeniero en Tecnologías de la Información</h2>
-    <p>Transformando el futuro a través de la tecnología..</p>
-</div>
+
+    <!-- Mensaje central -->
+    <div id="welcome-message">
+        <h1>¡Hola! Soy Daniel Ferrer</h1>
+        <h2>Técnico en Programación | Ingeniero en Tecnologías de la Información</h2>
+        <p>Transformando el futuro a través de la tecnología.</p>
+    </div>
+
     <!-- Interfaz tipo sistema operativo -->
     <div class="os-interface">
         <!-- Barra de tareas -->
         <div class="taskbar">
-           
             <div class="taskbar-icons">
+                <div class="icon" onclick="openWindow('cv')">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>CV</span>
+                </div>
+                <div class="icon" onclick="openWindow('acerca-de-mi')">
+                    <i class="fas fa-user"></i>
+                    <span>Acerca de mí</span>
+                </div>
+                <div class="icon" onclick="openWindow('contacto')">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contacto</span>
+                </div>
+                <div class="icon" onclick="openWindow('proyectos')">
+                    <i class="fas fa-folder"></i>
+                    <span>Proyectos</span>
+                </div>
+                <div class="icon" onclick="openWindow('certificaciones')">
+                    <i class="fas fa-certificate"></i>
+                    <span>Certificaciones</span>
+                </div>
                 <div class="icon" onclick="openWindow('habilidades')">
                     <i class="fas fa-code"></i>
                     <span>Habilidades</span>
@@ -37,30 +64,15 @@
                     <i class="fas fa-briefcase"></i>
                     <span>Experiencia</span>
                 </div>
-                <div class="icon" onclick="openWindow('contacto')">
-                    <i class="fas fa-envelope"></i>
-                    <span>Contacto</span>
+                <div class="icon" onclick="openWindow('galeria')">
+                    <i class="fas fa-images"></i>
+                    <span>Galería</span>
                 </div>
             </div>
         </div>
 
-        <!-- Menú de inicio -->
-        <div id="start-menu-content" class="start-menu-content">
-            <div class="menu-item" onclick="openWindow('habilidades')">
-                <i class="fas fa-code"></i>
-                <span>Habilidades</span>
-            </div>
-            <div class="menu-item" onclick="openWindow('experiencia')">
-                <i class="fas fa-briefcase"></i>
-                <span>Experiencia</span>
-            </div>
-            <div class="menu-item" onclick="openWindow('contacto')">
-                <i class="fas fa-envelope"></i>
-                <span>Contacto</span>
-            </div>
-        </div>
 
-        <!-- Ventanas -->
+        <!-- Ventana de Habilidades -->
         <div id="habilidades" class="window habilidades">
             <div class="window-header">
                 <span>Habilidades Técnicas</span>
@@ -68,45 +80,50 @@
                     <i class="fas fa-times" onclick="closeWindow('habilidades')"></i>
                 </div>
             </div>
-          <div class="window-content">
-    <div class="column">
-        <h3>Programación y Desarrollo</h3>
-        <p>Programación en Java (POO), Python, C, C++</p>
-        <p>Desarrollo web con HTML, CSS, JavaScript</p>
-        <p>Bases de datos con SQL y MySQL</p>
-        <p>Creación y gestión de redes neuronales en Python con OpenCV (visión por computadora)</p>
-        <p>Programación de Arduino, Raspberry Pi y ESP32</p>
-        <p>Programación básica de PLC</p>
-    </div>
-    
-    <div class="column">
-        <h3>Infraestructura IT y Redes</h3>
-        <p>Configuración de redes y servidores</p>
-        <p>Configuración de switches Dell y Cisco</p>
-        <p>Uso de Active Directory y DHCP</p>
-        <p>Intercomunicación de redes</p>
-        <p>Configuración de impresoras de etiquetas térmicas</p>
-        <p>Respaldo de información de usuarios</p>
-    </div>
-
-    <div class="column">
-        <h3>Sistemas Operativos y Virtualización</h3>
-        <p>Instalación de Windows, macOS y Linux</p>
-        <p>Creación de máquinas virtuales en Azure y entornos locales</p>
-
-        <h3>Electrónica y Electricidad</h3>
-        <p>Conocimientos en electricidad y electrónica</p>
-        <p>Conexiones electrónicas y eléctricas</p>
-        <p>Arquitectura de computadoras y cambio de componentes electrónicos</p>
-
-        <h3>Ciberseguridad y Soporte Técnico</h3>
-        <p>Conocimientos en ciberseguridad</p>
-        <p>Soporte técnico a usuarios</p>
-    </div>
-</div>
-
+            <div class="window-content">
+                <div class="column">
+                    <h3>Programación y Desarrollo</h3>
+                    <p>Programación en Java (POO), Python, C, C++</p>
+                    <p>Desarrollo web con HTML, CSS, JavaScript</p>
+                    <p>Bases de datos con SQL y MySQL</p>
+                    <p>Creación y gestión de redes neuronales en Python con OpenCV (visión por computadora)</p>
+                    <p>Programación de Arduino, Raspberry Pi y ESP32</p>
+                    <p>Programación básica de PLC</p>
+                    <p>Uso básico de Power BI</p>
+                    <p>Uso de Power Platform</p>
+                    <p>Desarrollo con Node-RED</p>
+                </div>
+                <div class="column">
+                    <h3>Infraestructura IT y Redes</h3>
+                    <p>Configuración de redes y servidores</p>
+                    <p>Configuración de switches Dell y Cisco</p>
+                    <p>Uso de Active Directory y DHCP</p>
+                    <p>Intercomunicación de redes</p>
+                    <p>Configuración de impresoras de etiquetas térmicas</p>
+                    <p>Respaldo de información de usuarios</p>
+                </div>
+                <div class="column">
+                    <h3>Sistemas Operativos y Virtualización</h3>
+                    <p>Instalación de Windows, macOS y Linux</p>
+                    <p>Creación de máquinas virtuales en Azure y entornos locales</p>
+                    <h3>Electrónica y Electricidad</h3>
+                    <p>Conocimientos en electricidad y electrónica</p>
+                    <p>Conexiones electrónicas y eléctricas</p>
+                    <p>Arquitectura de computadoras y cambio de componentes electrónicos</p>
+                </div>
+                <div class="column">
+                    <h3>Ciberseguridad y Soporte Técnico</h3>
+                    <p>Conocimientos en ciberseguridad</p>
+                    <p>Simulación de ataques de fuerza bruta y phishing utilizando Kali Linux</p>
+                    <p>Clonación de páginas web para pruebas de phishing</p>
+                    <p>Soporte técnico a usuarios</p>
+                    <h3>Herramientas de Productividad</h3>
+                    <p>Uso de Office 365 (Word, Excel, PowerPoint, Outlook, Teams, etc.)</p>
+                </div>
+            </div>
         </div>
 
+        <!-- Ventana de Experiencia -->
         <div id="experiencia" class="window experiencia">
             <div class="window-header">
                 <span>Experiencia Laboral</span>
@@ -115,12 +132,28 @@
                 </div>
             </div>
             <div class="window-content">
-                <h3>Hutchinson Mangueras – Residente de Prácticas en IT</h3>
-                <p>Gestión de Active Directory y configuración de DHCP.</p>
-                <p>Programación y configuración de switches Dell y Cisco.</p>
+                <div class="column">
+                    <h3>Hutchinson Autopartes México – Planta Mangueras</h3>
+                    <h4>Residente de Prácticas en IT SYSTEMS - Enero 2024 a Enero 2025</h4>
+                    <p>Administración de Active Directory y configuración de DHCP para gestionar usuarios y asignar direcciones IP dinámicas en la red corporativa.</p>
+                    <p>Programación y configuración de switches Dell y Cisco para garantizar la conectividad y el rendimiento de la infraestructura de red.</p>
+                    <p>Respaldo y recuperación de datos de usuarios para asegurar la integridad y continuidad operativa de los sistemas informáticos.</p>
+                    <p>Instalación, actualización y mantenimiento de sistemas operativos (Windows, macOS, Linux) para mantener los equipos de la empresa en condiciones óptimas.</p>
+                    <p>Soporte técnico en hardware, software y redes para resolver problemas y garantizar el funcionamiento continuo de los equipos.</p>
+                    <p>Gestión y asignación de licencias de software especializado como SolidWorks y AutoCAD para cumplir con los requerimientos de los usuarios.</p>
+                </div>
+                <div class="column">
+                    <p>Asignación y configuración de computadoras, laptops y periféricos para garantizar que los empleados dispongan de las herramientas necesarias para su trabajo.</p>
+                    <p>Capacitación en herramientas tecnológicas para mejorar la productividad y el uso eficiente de los recursos tecnológicos.</p>
+                    <p>Configuración y mantenimiento de impresoras de etiquetas Zebra y scanners Cognex para soportar procesos de etiquetado y escaneo en la planta.</p>
+                    <p>Configuración y mantenimiento de access points para asegurar conectividad Wi-Fi en toda la planta.</p>
+                    <p>Implementación y mantenimiento de redes Ethernet y Wi-Fi para garantizar una comunicación estable y eficiente entre dispositivos.</p>
+                    <p>Administración del sistema Keyscan Aurora para gestionar accesos y garantizar la seguridad en las instalaciones.</p>
+                </div>
             </div>
         </div>
 
+        <!-- Ventana de Contacto -->
         <div id="contacto" class="window contacto">
             <div class="window-header">
                 <span>Contacto</span>
@@ -129,8 +162,138 @@
                 </div>
             </div>
             <div class="window-content">
-                <p>Email: dangugarfer.09@gmail.com</p>
-                <p>Teléfono: 412-117-8312</p>
+                <p>Email: <a href="mailto:dangugarfer.09@gmail.com">dangugarfer.09@gmail.com</a></p>
+                <p>Teléfono: <a href="https://wa.me/524121178312">412-117-8312 (WhatsApp)</a></p>
+            </div>
+        </div>
+
+        <!-- Ventana de Acerca de mí -->
+        <div id="acerca-de-mi" class="window acerca-de-mi">
+            <div class="window-header">
+                <span>Acerca de mí</span>
+                <div class="window-controls">
+                    <i class="fas fa-times" onclick="closeWindow('acerca-de-mi')"></i>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1>Daniel Ferrer</h1>
+                <p>
+                    ¡Hola! Soy Daniel Ferrer, Técnico en Programación e Ingeniero en Tecnologías de la Información. Soy un apasionado de la tecnología, autodidacta y en constante evolución, con habilidades en programación, infraestructura IT, ciberseguridad y desarrollo de soluciones tecnológicas innovadoras. Disfruto explorar nuevas herramientas y tecnologías, combinando creatividad y análisis para resolver problemas de manera eficiente. Me destaco por ser proactivo, orientado a resultados y capaz de trabajar de forma independiente o colaborativa en equipos multidisciplinarios.
+                </p>
+            </div>
+        </div>
+
+        <!-- Ventana de Proyectos -->
+        <div id="proyectos" class="window proyectos">
+            <div class="window-header">
+                <span>Proyectos personales y prácticas</span>
+                <div class="window-controls">
+                    <i class="fas fa-times" onclick="closeWindow('proyectos')"></i>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="pdf-gallery-grid">
+                    <div class="pdf-thumbnail" data-pdf="proyectos/SGI-Hutchinson.pdf">
+                        <img src="images/hutchinson2.jpeg" alt="Proyecto 1">
+                        <span>SGI-HUTCHINSON</span>
+                    </div>
+                    <div class="pdf-thumbnail" data-pdf="proyectos/SEMINARIO.pdf">
+                        <img src="images/IACIBER.jpg" alt="Proyecto 2">
+                        <span>IA EN CIBERSEGURIDAD</span>
+                    </div>
+                    <div class="pdf-thumbnail" data-pdf="proyectos/Protocolos.pdf">
+                        <img src="images/CISCO2.png" alt="Proyecto 3">
+                        <span>PROTOCOLOS DE ENRUTAMIENTO</span>
+                    </div>
+                    <div class="pdf-thumbnail" data-pdf="proyectos/NODE-RED.pdf">
+                        <img src="images/node.png" alt="Proyecto 4">
+                        <span>NODE-RED</span>
+                    </div>
+                    <div class="pdf-thumbnail" data-pdf="proyectos/DHCP.pdf">
+                        <img src="images/CISCO.jpg" alt="Proyecto 5">
+                        <span>INSTALACIÓN Y CONFIGURACIÓN DE DHCP</span>
+                    </div>
+                    <div class="pdf-thumbnail" data-pdf="proyectos/Administracion.pdf">
+                        <img src="images/UTP.jpg" alt="Proyecto 6">
+                        <span>ADMINISTRACIÓN DE REDES</span>
+                    </div>
+					
+                </div>
+				 <p style="text-align: center; font-style: italic; margin-top: 20px;">
+				   Esta galería de proyectos está en constante evolución, al igual que yo. Muy pronto agregaré más proyectos y actividades que reflejan mi crecimiento y desarrollo profesional. </p>
+            </div>
+        </div>
+
+        <!-- Modal para el visor de PDF -->
+        <div class="pdf-modal-overlay">
+            <div class="pdf-modal-container">
+                <iframe id="pdf-modal-viewer" src="" width="100%" height="100%"></iframe>
+            </div>
+            <button class="close-btn2" onclick="closePdfModal()">&times;</button>
+        </div>
+
+        <!-- Ventana de Certificaciones -->
+        <div id="certificaciones" class="window certificaciones">
+            <div class="window-header">
+                <span>Certificaciones</span>
+                <div class="window-controls">
+                    <i class="fas fa-times" onclick="closeWindow('certificaciones')"></i>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="certificaciones-grid">
+                    <img src="images/1_page-0001.jpg" alt="Certificación 1" class="certificacion-img">
+                    <img src="images/2_page-0001.jpg" alt="Certificación 2" class="certificacion-img">
+                    <img src="images/3_page-0001.jpg" alt="Certificación 3" class="certificacion-img">
+                    <img src="images/4_page-0001.jpg" alt="Certificación 4" class="certificacion-img">
+                    <img src="images/5_page-0001.jpg" alt="Certificación 5" class="certificacion-img">
+                    <img src="images/6_page-0001.jpg" alt="Certificación 6" class="certificacion-img">
+                    <img src="images/7_page-0001.jpg" alt="Certificación 7" class="certificacion-img">
+                    <img src="images/8_page-0001.jpg" alt="Certificación 8" class="certificacion-img">
+                </div>
+				 <p style="text-align: center; font-style: italic; margin-top: 20px;">
+            Esta galería de certificaciones está en constante evolución, al igual que yo. Próximamente agregaré más certificaciones obtenidas que respaldan mi crecimiento profesional y compromiso con la excelencia
+        </p>
+            </div>
+        </div>
+
+        <!-- Ventana de Galería -->
+        <div id="galeria" class="window galeria">
+            <div class="window-header">
+                <span>Galería de mis proyectos y desarrollo profesional</span>
+				
+                <div class="window-controls">
+                    <i class="fas fa-times" onclick="closeWindow('galeria')"></i>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="certificaciones-grid">
+                    <img src="images/set.jpg" alt="Imagen 1" class="galeria-img">
+                    <img src="images/hutch.jpg" alt="Imagen 2" class="galeria-img">
+                    <img src="images/hutch2.jpg" alt="Imagen 3" class="galeria-img">
+                    <img src="images/brazo6.jpg" alt="Imagen 4" class="galeria-img">
+                    <img src="images/brazo4.jpg" alt="Imagen 5" class="galeria-img">
+                    <img src="images/brazo5.jpg" alt="Imagen 6" class="galeria-img">
+                </div>
+				 <p style="text-align: center; font-style: italic; margin-top: 20px;">
+            Esta galería está en constante evolución, al igual que yo. Muy pronto agregaré más proyectos y actividades que reflejan mi crecimiento y desarrollo profesional.
+        </p>
+            </div>
+        </div>
+
+        <!-- Ventana de CV -->
+        <div id="cv" class="window cv">
+            <div class="window-header">
+                <span>CV</span>
+                <div class="window-controls">
+                    <i class="fas fa-times" onclick="closeWindow('cv')"></i>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="pdf-thumbnail" data-pdf="cv/CV_DanielFerrer.pdf">
+                    <img src="images/hack.jpg" alt="CV">
+                    <span>Ver CV</span>
+                </div>
             </div>
         </div>
     </div>

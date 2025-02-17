@@ -1,26 +1,39 @@
+// Función para alternar entre modo claro y oscuro
+document.querySelector('.theme-toggle').addEventListener('click', function () {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    updateThemeIcon(isDarkMode);
+});
+
+// Función para actualizar el ícono del tema
+function updateThemeIcon(isDarkMode) {
+    const themeIcon = document.querySelector('.theme-toggle i');
+    themeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+}
+
+// Cargar el tema guardado
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        updateThemeIcon(true);
+    }
+}
+
+// Llamar a la función para cargar el tema al inicio
+loadTheme();
+
 // Función para abrir ventanas
 function openWindow(windowId) {
-    // Ocultar el mensaje central
-    const welcomeMessage = document.getElementById("welcome-message");
-    if (welcomeMessage) {
-        welcomeMessage.style.display = "none"; // Ocultar mensaje
-    }
-
-    // Cerrar todas las ventanas abiertas antes de abrir una nueva
     closeAllWindows();
-
-    // Seleccionar la ventana a abrir
     const windowElement = document.getElementById(windowId);
-
     if (windowElement) {
-        // Asegurarse de que la ventana esté centrada
-        windowElement.style.display = "block"; // Mostrar la ventana
-        windowElement.style.top = "50%"; // Centrar verticalmente
-        windowElement.style.left = "50%"; // Centrar horizontalmente
-        windowElement.style.transform = "translate(-50%, -50%)"; // Ajustar el centro
+        windowElement.style.display = "block";
+        windowElement.style.top = "50%";
+        windowElement.style.left = "50%";
+        windowElement.style.transform = "translate(-50%, -50%)";
     }
-
-    // Verificar si hay ventanas abiertas
     checkWindows();
 }
 
@@ -28,10 +41,8 @@ function openWindow(windowId) {
 function closeAllWindows() {
     const windows = document.querySelectorAll('.window');
     windows.forEach((windowElement) => {
-        windowElement.style.display = "none"; // Ocultar cada ventana
+        windowElement.style.display = "none";
     });
-
-    // Verificar si hay ventanas abiertas
     checkWindows();
 }
 
@@ -39,10 +50,8 @@ function closeAllWindows() {
 function closeWindow(windowId) {
     const windowElement = document.getElementById(windowId);
     if (windowElement) {
-        windowElement.style.display = "none"; // Ocultar la ventana
+        windowElement.style.display = "none";
     }
-
-    // Verificar si hay ventanas abiertas
     checkWindows();
 }
 
@@ -50,21 +59,14 @@ function closeWindow(windowId) {
 function checkWindows() {
     const windows = document.querySelectorAll(".window");
     let isAnyWindowOpen = false;
-
     windows.forEach(win => {
         if (win.style.display === "block") {
             isAnyWindowOpen = true;
         }
     });
-
-    // Mostrar u ocultar el mensaje central según si hay ventanas abiertas
     const welcomeMessage = document.getElementById("welcome-message");
     if (welcomeMessage) {
-        if (isAnyWindowOpen) {
-            welcomeMessage.style.display = "none";
-        } else {
-            welcomeMessage.style.display = "block";
-        }
+        welcomeMessage.style.display = isAnyWindowOpen ? "none" : "block";
     }
 }
 
@@ -82,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 particlesJS('particles-js', {
     "particles": {
         "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": "#000000" },
+        "color": { "value": "#000000" }, // Color de partículas en modo claro
         "shape": { "type": "circle" },
         "opacity": { "value": 0.5 },
         "size": { "value": 3, "random": true },
@@ -92,6 +94,20 @@ particlesJS('particles-js', {
     "interactivity": {
         "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } }
     }
+});
+
+// Cambiar color de partículas en modo oscuro
+function updateParticlesColor(isDarkMode) {
+    const particles = window.pJSDom[0].pJS.particles;
+    particles.color.value = isDarkMode ? "#ffffff" : "#000000"; // Blanco en modo oscuro, negro en modo claro
+    particles.line_linked.color = isDarkMode ? "#ffffff" : "#000000"; // Líneas blancas en modo oscuro
+    window.pJSDom[0].pJS.fn.particlesRefresh(); // Actualizar partículas
+}
+
+// Llamar a la función para actualizar el color de las partículas al cambiar el tema
+document.querySelector('.theme-toggle').addEventListener('click', function () {
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    updateParticlesColor(isDarkMode);
 });
 
 // Función para hacer las ventanas arrastrables
@@ -107,7 +123,7 @@ function makeDraggable(windowId) {
         isDragging = true;
         offsetX = e.clientX - win.offsetLeft;
         offsetY = e.clientY - win.offsetTop;
-        win.style.zIndex = "1000"; // Traer la ventana al frente
+        win.style.zIndex = "1000";
     });
 
     document.addEventListener('mousemove', (e) => {
@@ -127,16 +143,151 @@ document.addEventListener("DOMContentLoaded", () => {
     makeDraggable('habilidades');
     makeDraggable('experiencia');
     makeDraggable('contacto');
+    makeDraggable('galeria');
+    makeDraggable('cv');
+    makeDraggable('proyectos');
+    makeDraggable('certificaciones');
+    makeDraggable('acerca-de-mi');
 });
 
-// Variable para el footer
-const footer = document.querySelector('footer');
+// Lógica para manejar la navegación de imágenes en Certificaciones y Galería
+document.addEventListener("DOMContentLoaded", function () {
+    // Seleccionar las imágenes de Certificaciones y Galería
+    const certificacionesImages = document.querySelectorAll('.certificacion-img');
+    const galeriaImages = document.querySelectorAll('.galeria-img');
 
-// Detecta el evento de desplazamiento (scroll)
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) { // Ajusta el valor según cuánto quieras que baje el usuario
-        footer.style.bottom = '0'; // Muestra el footer cuando el usuario ha bajado lo suficiente
-    } else {
-        footer.style.bottom = '-100px'; // Oculta el footer si está en la parte superior
+    // Crear el overlay para las imágenes
+    const overlay = document.createElement('div');
+    overlay.classList.add('overlay');
+    document.body.appendChild(overlay);
+
+    // Botón de cierre
+    const closeBtn = document.createElement('button');
+    closeBtn.classList.add('close-btn');
+    closeBtn.innerHTML = '&times;';
+    overlay.appendChild(closeBtn);
+
+    // Botones de navegación
+    const prevBtn = document.createElement('button');
+    prevBtn.classList.add('nav-btn', 'prev');
+    prevBtn.innerHTML = '&larr;';
+    overlay.appendChild(prevBtn);
+
+    const nextBtn = document.createElement('button');
+    nextBtn.classList.add('nav-btn', 'next');
+    nextBtn.innerHTML = '&rarr;';
+    overlay.appendChild(nextBtn);
+
+    let currentIndex = 0; // Índice de la imagen actual
+    let currentImages = []; // Array para almacenar las imágenes actuales
+
+    // Función para mostrar la imagen en el overlay
+    function showImage(index) {
+        const clonedImg = currentImages[index].cloneNode(true); // Clonar la imagen
+        clonedImg.style.maxWidth = "90%"; // Ajustar el tamaño de la imagen
+        clonedImg.style.maxHeight = "90%";
+        clonedImg.style.borderRadius = "10px";
+        clonedImg.style.boxShadow = "0 0 20px rgba(0, 0, 0, 0.5)";
+        clonedImg.style.cursor = "pointer";
+
+        overlay.innerHTML = ''; // Limpiar el overlay
+        overlay.appendChild(closeBtn);
+        overlay.appendChild(prevBtn);
+        overlay.appendChild(nextBtn);
+        overlay.appendChild(clonedImg);
+        overlay.classList.add('active');
     }
+
+    // Función para cerrar la imagen
+    function closeImage() {
+        overlay.classList.remove('active');
+    }
+
+    // Cerrar al hacer clic en el botón de cierre
+    closeBtn.addEventListener('click', closeImage);
+
+    // Cerrar al hacer clic fuera de la imagen
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) {
+            closeImage();
+        }
+    });
+
+    // Navegar a la imagen anterior
+    prevBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        showImage(currentIndex);
+    });
+
+    // Navegar a la siguiente imagen
+    nextBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        showImage(currentIndex);
+    });
+
+    // Agrandar la imagen al hacer clic (Certificaciones)
+    if (certificacionesImages) {
+        certificacionesImages.forEach((img, index) => {
+            img.addEventListener('click', function (e) {
+                e.stopPropagation();
+                currentImages = Array.from(certificacionesImages); // Usar solo imágenes de certificaciones
+                currentIndex = index;
+                showImage(currentIndex);
+            });
+        });
+    }
+
+    // Agrandar la imagen al hacer clic (Galería)
+    if (galeriaImages) {
+        galeriaImages.forEach((img, index) => {
+            img.addEventListener('click', function (e) {
+                e.stopPropagation();
+                currentImages = Array.from(galeriaImages); // Usar solo imágenes de galería
+                currentIndex = index;
+                showImage(currentIndex);
+            });
+        });
+    }
+});
+
+// Función para detectar dispositivos móviles
+function isMobile() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+}
+
+// Función para abrir el modal de PDF o descargar el archivo en móvil
+function openPdfModal(pdfUrl) {
+    if (isMobile()) {
+        // Inicia la descarga en móvil
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.download = pdfUrl.split('/').pop(); // Usa el nombre del archivo como nombre de descarga
+        link.click();
+    } else {
+        // En equipos de escritorio, abrir el modal
+        const pdfViewer = document.getElementById('pdf-modal-viewer');
+        pdfViewer.src = pdfUrl;
+        document.querySelector('.pdf-modal-overlay').classList.add('active');
+    }
+}
+
+// Función para cerrar el modal de PDF
+function closePdfModal() {
+    const pdfViewer = document.getElementById('pdf-modal-viewer');
+    pdfViewer.src = ''; // Limpiar el visor
+    document.querySelector('.pdf-modal-overlay').classList.remove('active');
+}
+
+
+// Eventos para abrir el modal de PDF al hacer clic en una miniatura
+document.addEventListener("DOMContentLoaded", function () {
+    const thumbnails = document.querySelectorAll('.pdf-thumbnail');
+    thumbnails.forEach((thumbnail) => {
+        thumbnail.addEventListener('click', () => {
+            const pdfUrl = thumbnail.getAttribute('data-pdf');
+            openPdfModal(pdfUrl);
+        });
+    });
 });

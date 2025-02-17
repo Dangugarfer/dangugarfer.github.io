@@ -3,27 +3,46 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    background-color: #ffffff; /* Fondo blanco */
-    color: #1e1e2f; /* Texto oscuro */
+    background-color: #ffffff;
+    color: #1e1e2f;
     overflow: hidden;
-}
-/* Para la sección experiencia con dos columnas */
-.experiencia .window-content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
-    gap: 20px; /* Espacio entre columnas */
-}
-/* Para la sección experiencia con dos columnas */
-.contacto .window-content {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr); /* Dos columnas iguales */
-    gap: 20px; /* Espacio entre columnas */
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.habilidades .window-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Dos columnas iguales */
-    gap: 20px; /* Espacio entre columnas */
+body.dark-mode {
+    background-color: #121212; /* Fondo casi negro para modo oscuro */
+    color: #e0e0e0; /* Texto más claro en modo oscuro */
+}
+
+/* Botón de modo claro/oscuro */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 2rem; /* Más grande */
+    color: #1e1e2f;
+    transition: color 0.3s ease, transform 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+body.dark-mode .theme-toggle {
+    color: #ffcc00; /* Amarillo para modo oscuro */
+    background-color: rgba(18, 18, 18, 0.9); /* Fondo oscuro semi-transparente */
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1); /* Efecto de escala al pasar el mouse */
+    color: #007bff; /* Azul al pasar el mouse */
 }
 
 /* Pantalla de carga */
@@ -33,21 +52,29 @@ body {
     height: 100%;
     background: #ffffff;
     display: flex;
-    flex-direction: column; /* Alinear elementos verticalmente */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    transition: opacity 0.5s ease;
 }
 
-/* Círculo de carga */
+body.dark-mode #loading-screen {
+    background: #121212; /* Fondo oscuro */
+}
+
 .loader {
-    border: 8px solid #f3f3f3; /* Color del borde */
-    border-top: 8px solid #1e1e2f; /* Color del borde superior */
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #1e1e2f;
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    animation: spin 1s linear infinite; /* Animación de rotación */
-    margin-bottom: 20px; /* Espacio entre el círculo y el texto */
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+body.dark-mode .loader {
+    border-top-color: #ffcc00; /* Amarillo en modo oscuro */
 }
 
 @keyframes spin {
@@ -55,11 +82,20 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Texto de carga */
 .loading-text {
     font-size: 1.2rem;
     color: #1e1e2f;
     text-align: center;
+    animation: fadeIn 1.5s ease-in-out infinite alternate;
+}
+
+body.dark-mode .loading-text {
+    color: #e0e0e0; /* Texto claro en modo oscuro */
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
 }
 
 /* Fondo de partículas */
@@ -70,18 +106,27 @@ body {
     z-index: -1;
 }
 
+body.dark-mode #particles-js {
+    background-color: #121212; /* Fondo oscuro para partículas */
+}
+
 /* Barra de tareas */
 .taskbar {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+body.dark-mode .taskbar {
+    background: rgba(18, 18, 18, 0.95); /* Fondo oscuro semi-transparente */
 }
 
 .taskbar-icons {
@@ -94,43 +139,32 @@ body {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.8;
 }
 
 .icon:hover {
     transform: scale(1.1);
+    opacity: 1;
 }
 
 .icon i {
     font-size: 1.5rem;
     margin-bottom: 5px;
+    color: #1e1e2f;
 }
 
-/* Menú de inicio */
-.start-menu-content {
-    position: fixed;
-    bottom: 60px;
-    left: 10px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    display: none;
-    flex-direction: column;
-    padding: 10px;
-    z-index: 1001;
+body.dark-mode .icon i {
+    color: #e0e0e0; /* Iconos claros en modo oscuro */
 }
 
-.menu-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    cursor: pointer;
+.icon span {
+    font-size: 0.9rem;
+    color: #1e1e2f;
 }
 
-.menu-item:hover {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+body.dark-mode .icon span {
+    color: #e0e0e0; /* Texto claro en modo oscuro */
 }
 
 /* Ventanas */
@@ -139,23 +173,51 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%; /* Abarcar todo el ancho disponible */
-    max-width: 1200px; /* Límite de ancho máximo */
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 10px;
+    width: 80%;
+    max-width: 900px;
+    max-height: 80vh;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 15px; /* Bordes más redondeados */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    display: none; /* Cambia a "block" para probar */
+    display: none;
     z-index: 1000;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode .window {
+    background: rgba(18, 18, 18, 0.98); /* Fondo oscuro semi-transparente */
+    color: #e0e0e0; /* Texto claro en modo oscuro */
+}
+
+.window.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .window-header {
-    padding: 10px;
+    padding: 15px;
     background: #f0f0f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+body.dark-mode .window-header {
+    background: #1e1e1e; /* Fondo oscuro para el encabezado */
+}
+
+.window-header span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1e1e1e;
+}
+
+body.dark-mode .window-header span {
+    color: #e0e0e0; /* Texto claro en modo oscuro */
 }
 
 .window-header button {
@@ -163,34 +225,34 @@ body {
     border: none;
     cursor: pointer;
     font-size: 1rem;
+    color: #1e1e1e;
+    transition: color 0.2s ease;
 }
 
-
-/* Contenido específico de habilidades */
-#habilidades {
-    grid-column: span 3; /* Abarcar las tres columnas */
-    background-color: #fff; /* Fondo blanco */
-    padding: 20px; /* Espaciado interno */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    text-align: center; /* Centrar contenido si es necesario */
-	 text-align: justify; /* Justificar texto */
-}
-#experiencia {
-    grid-column: span 2; /* Ocupa dos columnas */
-    background-color: #fff; /* Fondo blanco */
-    padding: 20px; /* Espaciado interno */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    text-align: justify; /* Texto justificado */
+body.dark-mode .window-header button {
+    color: #e0e0e0; /* Iconos claros en modo oscuro */
 }
 
+.window-header button:hover {
+    color: #007bff; /* Azul al pasar el mouse */
+}
 
+.window-content {
+    padding: 20px;
+}
 
-/* Animaciones */
-.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
+.window-content a {
+    color: #1e1e1e;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .window-content a {
+    color: #e0e0e0; /* Enlaces claros en modo oscuro */
+}
+
+.window-content a:hover {
+    color: #007bff; /* Azul al pasar el mouse */
 }
 
 /* Mensaje central */
@@ -200,8 +262,18 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: #1e1e2f;
-    z-index: 100; /* Asegura que esté encima del fondo de partículas */
+    color: #1e1e1e;
+    z-index: 100;
+    animation: fadeInWelcome 2s ease-in-out;
+}
+
+body.dark-mode #welcome-message {
+    color: #e0e0e0; /* Texto claro en modo oscuro */
+}
+
+@keyframes fadeInWelcome {
+    0% { opacity: 0; transform: translate(-50%, -40%); }
+    100% { opacity: 1; transform: translate(-50%, -50%); }
 }
 
 #welcome-message h1 {
@@ -220,4 +292,434 @@ body {
     font-size: 1.2rem;
     font-style: italic;
     color: #555;
+}
+
+body.dark-mode #welcome-message p {
+    color: #ccc; /* Texto claro en modo oscuro */
+}
+
+/* Estilos para las ventanas específicas */
+.habilidades .window-content {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.experiencia .window-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.acerca-de-mi .window-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.acerca-de-mi h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #1e1e1e;
+}
+
+body.dark-mode .acerca-de-mi h1 {
+    color: #e0e0e0; /* Texto claro en modo oscuro */
+}
+
+.acerca-de-mi p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+body.dark-mode .acerca-de-mi p {
+    color: #ccc; /* Texto claro en modo oscuro */
+}
+
+.proyectos .window-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.proyectos p {
+    font-size: 1rem;
+    color: #555;
+}
+
+body.dark-mode .proyectos p {
+    color: #ccc; /* Texto claro en modo oscuro */
+}
+
+.certificaciones .window-content {
+    padding: 20px;
+}
+
+.certificaciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.certificaciones-grid img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificaciones-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.overlay.active {
+    display: flex;
+}
+
+.overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.overlay img:hover {
+    transform: scale(1.02);
+}
+
+/* Botón de cierre */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #1e1e1e;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+    background: #007bff;
+}
+
+/* Botones de navegación */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+.nav-btn.prev {
+    left: 20px;
+}
+
+.nav-btn.next {
+    right: 20px;
+}
+
+/* Estilos para el visor de PDF */
+.pdf-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.pdf-modal-overlay.active {
+    display: flex;
+}
+
+.pdf-modal-container {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 1200px;
+    height: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pdf-modal-viewer {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+}
+
+/* Botón de cierre (fuera del contenedor del PDF) */
+.close-btn2 {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #1e1e1e;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+    z-index: 3000;
+}
+
+.close-btn2:hover {
+    background: #007bff;
+}
+
+/* Estilos para la galería de PDFs */
+.pdf-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    padding: 10px;
+}
+
+.pdf-thumbnail {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pdf-thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.pdf-thumbnail img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.pdf-thumbnail span {
+    display: block;
+    text-align: center;
+    padding: 5px;
+    background: #f0f0f0;
+    font-size: 0.8rem;
+    color: #333;
+}
+
+body.dark-mode .pdf-thumbnail span {
+    background: #1e1e1e;
+    color: #e0e0e0; /* Texto claro en modo oscuro */
+}
+
+/* Estilos para la ventana de Galería */
+.galeria .window-content {
+    padding: 20px;
+}
+
+.galeria .certificaciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.galeria .certificaciones-grid img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.galeria .certificaciones-grid img:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos para la ventana de CV */
+.cv .window-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.cv .pdf-thumbnail {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cv .pdf-thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cv .pdf-thumbnail img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.cv .pdf-thumbnail span {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background: #f0f0f0;
+    font-size: 1rem;
+    color: #333;
+}
+
+body.dark-mode .cv .pdf-thumbnail span {
+    background: #1e1e1e;
+    color: #e0e0e0; /* Texto claro en modo oscuro */
+}
+
+
+
+/*MOVIL*/
+
+@media (max-width: 768px) {
+    /* Ajustar el mensaje de bienvenida */
+    #welcome-message h1 {
+        font-size: 2rem;
+    }
+
+    #welcome-message h2 {
+        font-size: 1.2rem;
+    }
+
+    #welcome-message p {
+        font-size: 1rem;
+    }
+
+    /* Ajustar la barra de tareas */
+    .taskbar-icons {
+        gap: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .icon i {
+        font-size: 1.2rem;
+    }
+
+    .icon span {
+        display: none;
+    }
+
+    /* Ajustar ventanas */
+    .window {
+        width: 95%;
+        max-height: 90vh;
+        top: 10px;
+        transform: translate(-50%, 0);
+    }
+
+    .window-header {
+        padding: 10px;
+    }
+
+    .window-content {
+        padding: 15px;
+    }
+
+    /* Ajustar la galería de certificaciones */
+    .certificaciones-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    /* Ajustar el botón de modo claro/oscuro */
+    .theme-toggle {
+        font-size: 1.5rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Ajustar el modal de PDF */
+    .pdf-modal-container {
+        width: 95%;
+        height: 80%;
+    }
+
+    .close-btn2 {
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Ajustar el texto en las ventanas */
+    .habilidades .window-content,
+    .experiencia .window-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Estilos para el modal de PDF en móviles */
+@media (max-width: 768px) {
+    .pdf-modal-container {
+        width: 95%; /* Ocupar casi toda la pantalla */
+        height: 80%; /* Altura ajustada */
+        border-radius: 0; /* Sin bordes redondeados */
+    }
+
+    #pdf-modal-viewer {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .close-btn2 {
+        top: 10px; /* Posición más arriba */
+        right: 10px; /* Posición más a la derecha */
+        background: #ff0000; /* Color de fondo rojo para mayor visibilidad */
+        color: #fff; /* Texto blanco */
+    }
 }
